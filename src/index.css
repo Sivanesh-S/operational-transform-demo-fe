@@ -1,0 +1,13 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  /* Colors */
+  --background: #eee;
+  --primary: #d81b60;
+  --primary-hover: #c41957;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
