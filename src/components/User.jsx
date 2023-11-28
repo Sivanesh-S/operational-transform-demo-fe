@@ -26,6 +26,7 @@ export function User(props) {
 
       indices.push(index);
 
+      // As compose is done on the `value` prop of `<ReactQuill />`
       const transformedDelta = new Delta().transform(operation.delta, true);
       const composedDelta = content.compose(transformedDelta);
       setNewOps(new Delta());
@@ -57,23 +58,13 @@ export function User(props) {
   );
 
   const onChange = (_, delta, source, editor) => {
+    // If the change is not caused due to user input ignore...
     if (source === "api") return;
 
     const deltaContents = editor.getContents();
 
     const diff = content.diff(deltaContents);
-
-    console.log("diff: ", diff);
-
     setNewOps(diff);
-
-    // setValue(deltaContents);
-
-    // const newChange: Change = {
-    //   delta,
-    //   name,
-    // };
-    // setOperations((pre) => [...pre, newChange]);
 
     debouncedHandleChange(delta, deltaContents, content);
   };

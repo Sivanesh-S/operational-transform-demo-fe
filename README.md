@@ -1,8 +1,13 @@
-# React + Vite
+# Operational Transformation Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Clone this [`initial-setup`](https://github.com/Sivanesh-S/operational-transform-demo-fe/tree/initial-setup) branch to get started. 
+   1. This branch has all the components mentioned above. (`<App />`, `<AddUser />`, `<User />`)
+   2. But without any OT based code to get started
 
-Currently, two official plugins are available:
+To get started 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+yarn 
+yarn dev
+```
+
