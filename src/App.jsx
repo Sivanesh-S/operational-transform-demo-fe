@@ -3,9 +3,10 @@ import { useState } from "react";
 import "./App.css";
 import { AddUser } from "./components/AddUser";
 import { User } from "./components/User";
+import { Footer } from "./components/Footer";
 
 function App() {
-  const [users, setUsers] = useState(["Peter", "Lois", "Stewie"]);
+  const [users, setUsers] = useState(["Peter", "Stewie"]);
 
   // Handlers
   const onCreateUser = (username) => {
@@ -29,6 +30,7 @@ function App() {
             <User key={user} name={user} />
           ))}
         </div>
+        <Footer />
       </div>
     </>
   );
