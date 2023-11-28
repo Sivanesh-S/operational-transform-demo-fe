@@ -1,18 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Delta from "quill-delta";
 
-import "./App.css";
 import { AddUser } from "./components/AddUser";
 import { User } from "./components/User";
 
+import "./App.css";
+
 function App() {
+  // Server state
   const [users, setUsers] = useState(["Peter", "Lois", "Stewie"]);
+  const [operations, setOperations] = useState([]);
+  const [content, setContent] = useState(new Delta());
+
+  // Effects
+  // Update Server state
+  useEffect(() => {
+    if (operations.length) {
+      const newcontent = operations.reduce((acc, curr) => {
+        return acc.compose(curr.delta);
+      }, content);
+
+      setTimeout(() => {
+        setContent(newcontent);
+        console.log("server updated...");
+      }, 2000);
+      setOperations([]);
+    }
+  }, [operations]);
+
+  // API mock
+  const getInitialState = () => {
+    return content;
+  };
 
   // Handlers
   const onCreateUser = (username) => {
     if (users.includes(username)) {
-      alert(
-        `There's already an user with name "${username}". Try a different name`
-      );
+      const message = `There's already an user with name "${username}". Try a different name`;
+      alert(message);
       return;
     }
 
@@ -26,7 +51,13 @@ function App() {
         <AddUser onCreateUser={onCreateUser} />
         <div className="users">
           {users.map((user) => (
-            <User key={user} name={user} />
+            <User
+              key={user}
+              name={user}
+              operations={operations}
+              setOperations={setOperations}
+              getInitialState={getInitialState}
+            />
           ))}
         </div>
       </div>
