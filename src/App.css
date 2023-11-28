@@ -1,13 +1,19 @@
-h1 {
-  padding: 24px;
-}
-
 .container {
-  /* background-color: #eee; */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .center {
   text-align: center;
+}
+
+.footer {
+  margin: 24px;
+}
+
+.footer-my-info {
+  margin-top: 24px;
 }
 
 /* Create User - Starts */
@@ -54,6 +60,7 @@ h1 {
   padding: 32px;
   background: var(--background);
   border-radius: 8px;
+  flex: 1;
 }
 
 .user {
@@ -69,7 +76,7 @@ h1 {
 .user-info {
   text-align: center;
   display: inline-block;
-  min-width: 100px;
+  min-width: 200px;
   /* display: flex;  */
 }
 
@@ -81,3 +88,42 @@ h1 {
   flex: 1;
 }
 /* Users - ends */
+
+/* Media Queries */
+
+@media only screen and (max-width: 700px) {
+  .create-user {
+    padding: 8px;
+    margin: 8px auto;
+    border-radius: 4px;
+    gap: 8px;
+  }
+
+  .users {
+    padding: 8px 4px;
+    margin: 8px;
+  }
+
+  .user {
+    margin: 8px 4px;
+    padding: 8px 4px;
+    flex-direction: column;
+  }
+
+  .user-info {
+    display: flex;
+    gap: 8px;
+    margin: 8px 0;
+    min-width: auto;
+  }
+
+  .user-info h3 {
+    font-size: 1.25em;
+    margin-top: 0;
+  }
+
+  .user-info svg {
+    height: 24px;
+    width: 24px;
+  }
+}

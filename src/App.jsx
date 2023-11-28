@@ -3,12 +3,13 @@ import Delta from "quill-delta";
 
 import { AddUser } from "./components/AddUser";
 import { User } from "./components/User";
+import { Footer } from "./components/Footer";
 
 import "./App.css";
 
 function App() {
   // Server state
-  const [users, setUsers] = useState(["Peter", "Lois", "Stewie"]);
+  const [users, setUsers] = useState(["Peter", "Stewie"]);
   const [operations, setOperations] = useState([]);
   const [content, setContent] = useState(new Delta());
 
@@ -60,6 +61,7 @@ function App() {
             />
           ))}
         </div>
+        <Footer />
       </div>
     </>
   );
