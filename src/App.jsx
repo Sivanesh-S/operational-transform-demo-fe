@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Delta from "quill-delta";
 
 import { AddUser } from "./components/AddUser";
@@ -11,7 +11,9 @@ function App() {
   // Server state
   const [users, setUsers] = useState(["Peter", "Stewie"]);
   const [operations, setOperations] = useState([]);
-  const [content, setContent] = useState(new Delta());
+
+  // Frequently updated and not depended for any state to update
+  const contentRef = useRef(new Delta());
 
   // Effects
   // Update Server state
@@ -19,19 +21,17 @@ function App() {
     if (operations.length) {
       const newcontent = operations.reduce((acc, curr) => {
         return acc.compose(curr.delta);
-      }, content);
+      }, contentRef.current);
 
-      setTimeout(() => {
-        setContent(newcontent);
-        console.log("server updated...");
-      }, 2000);
+      contentRef.current = newcontent;
+      console.log("server updated...");
       setOperations([]);
     }
   }, [operations]);
 
   // API mock
   const getInitialState = () => {
-    return content;
+    return contentRef.current;
   };
 
   // Handlers
